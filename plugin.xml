@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  id="cordova-plugin-jsms"
+  version="1.0.0">
+
+    <name>JSMS Cordova Plugin</name>
+    <description>JSMS for Cordova plugin</description>
+    <author>JiGuang</author>
+    <keywords>JSMS,SMS,jsms,sms</keywords>
+    <license>MIT License</license>
+
+    <preference name="APP_KEY" />
+
+    <js-module src="www/JSmsPlugin.js" name="JSmsPlugin">
+        <clobbers target="jsms"/>
+    </js-module>
+
+    <engines>
+        <engine name="cordova" version=">=5.0" />
+    </engines>
+
+    <platform name="android">
+      <config-file target="res/xml/config.xml" parent="/*">
+        <feature name="JSmsPlugin">
+          <param name="android-package" value="cn.jiguang.jsms" />
+        </feature>
+      </config-file>
+
+      <config-file name="AndroidManifest.xml" parent="/manifest">
+        <!-- Required permissions. -->
+        <uses-permission android:name="android.permission.INTERNET"/>
+        <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+        <uses-permission android:name="android.permission.READ_SMS"/>
+
+        <meta-data android:name="JPUSH_APPKEY" android:value="$APP_KEY"/>
+      </config-file>
+
+      <source-file src="src/android/jpush-sdk-sms-v1.0.0.jar" target-dir="libs"/>
+      <source-file src="src/android/JSmsPlugin.java" target-dir="src/cn/jiguang/jsms"/>
+
+    </platform>
+
+</plugin>
