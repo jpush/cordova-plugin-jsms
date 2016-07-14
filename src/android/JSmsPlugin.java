@@ -22,7 +22,6 @@ public class JSmsPlugin extends CordovaPlugin {
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
-        SMSSDK.getInstance().initSdk(cordova.getActivity());
     }
 
     @Override
@@ -46,6 +45,10 @@ public class JSmsPlugin extends CordovaPlugin {
             }
         });
         return super.execute(action, args, callbackContext);
+    }
+
+    void init(JSONArray data, CallbackContext callback) {
+        SMSSDK.getInstance().initSdk(cordova.getActivity());
     }
 
     void setDebugMode(JSONArray data, CallbackContext callback) {
@@ -90,7 +93,7 @@ public class JSmsPlugin extends CordovaPlugin {
             SMSSDK.getInstance().checkSmsCodeAsyn(phoneNum, code, new SmscheckListener() {
                 @Override
                 public void checkCodeSuccess(String code) {
-                    callback.success(code);
+                    callback.success(code); // code：验证码信息。
                 }
 
                 @Override
