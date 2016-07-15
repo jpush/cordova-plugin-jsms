@@ -11,6 +11,8 @@ import org.json.JSONException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import cn.jpush.sms.SMSSDK;
 import cn.jpush.sms.listener.SmscheckListener;
@@ -18,6 +20,7 @@ import cn.jpush.sms.listener.SmscodeListener;
 
 public class JSmsPlugin extends CordovaPlugin {
     private static final String TAG = "JSmsPlugin";
+    private ExecutorService threadPool = Executors.newFixedThreadPool(1);
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -27,7 +30,7 @@ public class JSmsPlugin extends CordovaPlugin {
     @Override
     public boolean execute(final String action, final JSONArray args,
                            final CallbackContext callbackContext) throws JSONException {
-        cordova.getThreadPool().execute(new Runnable() {
+        threadPool.execute(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -44,7 +47,7 @@ public class JSmsPlugin extends CordovaPlugin {
                 }
             }
         });
-        return super.execute(action, args, callbackContext);
+        return true;
     }
 
     void init(JSONArray data, CallbackContext callback) {

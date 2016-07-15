@@ -23,7 +23,7 @@
     <platform name="android">
       <config-file target="res/xml/config.xml" parent="/*">
         <feature name="JSmsPlugin">
-          <param name="android-package" value="cn.jiguang.jsms" />
+          <param name="android-package" value="cn.jiguang.jsms.JSmsPlugin" />
         </feature>
       </config-file>
 
@@ -34,7 +34,9 @@
         <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
         <uses-permission android:name="android.permission.READ_SMS"/>
+      </config-file>
 
+      <config-file name="AndroidManifest.xml" parent="/manifest/application">
         <meta-data android:name="JPUSH_APPKEY" android:value="$APP_KEY"/>
       </config-file>
 

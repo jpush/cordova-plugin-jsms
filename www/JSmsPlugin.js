@@ -16,7 +16,7 @@ JSmsPlugin.prototype.setDebugMode = function (successCallback, errorCallback, en
 // phoneNum：字符串，表示要接收短信验证码的手机号。
 // tempId：字符串，表示短信模板 ID。
 JSmsPlugin.prototype.getSmsCode = function (successCallback, errorCallback, phoneNum, tempId) {
-  exec(successCallback, errorCallback, 'JSmsPlugin', 'getSmsCode', [phoneNum, tempId, time])
+  exec(successCallback, errorCallback, 'JSmsPlugin', 'getSmsCode', [phoneNum, tempId])
 }
 
 // 检查短信验证码是否正确。
