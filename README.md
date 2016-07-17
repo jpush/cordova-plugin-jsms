@@ -13,11 +13,11 @@
 
   或
 
-      cordova plugin add https://github.com/jpush/cordova-plugin-jsms.git --variable APP_KEY=Your_app_key
+      cordova plugin add https://github.com/jpush/cordova-plugin-jsms.git --variable APP_KEY=Your_App_Key
 
 - 本地
 
-        cordova plugin add <Plugin path> --variable APP_KEY=Your_app_key
+        cordova plugin add <Plugin path> --variable APP_KEY=Your_App_Key
 
     > [这里](http://docs.jiguang.cn/guideline/statistical_report/)了解如何获得 AppKey。
 
