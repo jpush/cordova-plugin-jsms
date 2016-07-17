@@ -9,6 +9,10 @@
 ## 安装
 - 在线
 
+        cordova plugin add cordova-plugin-jsms --variable APP_KEY=Your_App_KEY
+
+  或
+
         cordova plugin add https://github.com/jpush/cordova-plugin-jsms.git --variable APP_KEY=Your_app_key
 
 - 本地
