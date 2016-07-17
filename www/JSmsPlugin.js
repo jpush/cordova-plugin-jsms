@@ -1,7 +1,6 @@
 var exec = require('cordova/exec')
 
 var JSmsPlugin = function () {}
-
 JSmsPlugin.prototype.init = function () {
   exec(null, null, 'JSmsPlugin', 'init', [])
 }
