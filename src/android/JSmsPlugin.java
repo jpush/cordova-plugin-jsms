@@ -11,6 +11,8 @@ import org.json.JSONException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import cn.jpush.sms.SMSSDK;
 import cn.jpush.sms.listener.SmscheckListener;
@@ -18,17 +20,17 @@ import cn.jpush.sms.listener.SmscodeListener;
 
 public class JSmsPlugin extends CordovaPlugin {
     private static final String TAG = "JSmsPlugin";
+    private ExecutorService threadPool = Executors.newFixedThreadPool(1);
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
-        SMSSDK.getInstance().initSdk(cordova.getActivity());
     }
 
     @Override
     public boolean execute(final String action, final JSONArray args,
                            final CallbackContext callbackContext) throws JSONException {
-        cordova.getThreadPool().execute(new Runnable() {
+        threadPool.execute(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -45,7 +47,11 @@ public class JSmsPlugin extends CordovaPlugin {
                 }
             }
         });
-        return super.execute(action, args, callbackContext);
+        return true;
+    }
+
+    void init(JSONArray data, CallbackContext callback) {
+        SMSSDK.getInstance().initSdk(cordova.getActivity());
     }
 
     void setDebugMode(JSONArray data, CallbackContext callback) {
@@ -90,7 +96,7 @@ public class JSmsPlugin extends CordovaPlugin {
             SMSSDK.getInstance().checkSmsCodeAsyn(phoneNum, code, new SmscheckListener() {
                 @Override
                 public void checkCodeSuccess(String code) {
-                    callback.success(code);
+                    callback.success(code); // code：验证码信息。
                 }
 
                 @Override

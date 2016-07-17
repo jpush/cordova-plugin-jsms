@@ -1,0 +1,37 @@
+{
+  "name": "cordova-plugin-jsms",
+  "version": "1.0.0",
+  "description": "JSMS for Cordova plugin.",
+  "cordova": {
+    "id": "jpush-phonegap-plugin",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpush/cordova-plugin-jsms.git"
+  },
+  "keywords": [
+    "JPush",
+    "sms",
+    "jiguang",
+    "jsms",
+    "JSMS",
+    "cordova-plugin-jsms",
+    "cordova-plugin"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=5.0"
+    }
+  ],
+  "author": "JiGuang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jpush/cordova-plugin-jsms/issues"
+  },
+  "homepage": "https://github.com/jpush/cordova-plugin-jsms#readme"
+}
