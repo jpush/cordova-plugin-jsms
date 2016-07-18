@@ -18,8 +18,8 @@ import cn.jpush.sms.SMSSDK;
 import cn.jpush.sms.listener.SmscheckListener;
 import cn.jpush.sms.listener.SmscodeListener;
 
-public class JSmsPlugin extends CordovaPlugin {
-    private static final String TAG = "JSmsPlugin";
+public class JSMSPlugin extends CordovaPlugin {
+    private static final String TAG = "JSMSPlugin";
     private ExecutorService threadPool = Executors.newFixedThreadPool(1);
 
     @Override
@@ -34,9 +34,9 @@ public class JSmsPlugin extends CordovaPlugin {
             @Override
             public void run() {
                 try {
-                    Method method = JSmsPlugin.class.getDeclaredMethod(action, JSONArray.class,
+                    Method method = JSMSPlugin.class.getDeclaredMethod(action, JSONArray.class,
                             CallbackContext.class);
-                    method.invoke(JSmsPlugin.this, args, callbackContext);
+                    method.invoke(JSMSPlugin.this, args, callbackContext);
                 } catch (NoSuchMethodException e) {
                     e.printStackTrace();
                     callbackContext.error("No such method.");
