@@ -12,7 +12,7 @@
 
     <preference name="APP_KEY" />
 
-    <js-module src="www/JSmsPlugin.js" name="JSmsPlugin">
+    <js-module src="www/JSMSPlugin.js" name="JSMSPlugin">
         <clobbers target="jsms"/>
     </js-module>
 
@@ -22,7 +22,7 @@
 
     <platform name="android">
       <config-file target="res/xml/config.xml" parent="/*">
-        <feature name="JSmsPlugin">
+        <feature name="JSMSPlugin">
           <param name="android-package" value="cn.jiguang.jsms.JSmsPlugin" />
         </feature>
       </config-file>
