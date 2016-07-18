@@ -1,5 +1,10 @@
 # cordova-plugin-jsms
 
+[![QQ Group](https://img.shields.io/badge/QQ%20Group-413602425-red.svg)]()
+[![release](https://img.shields.io/badge/release-1.0.0-blue.svg)](https://github.com/jpush/cordova-plugin-jsms/releases)
+[![platforms](https://img.shields.io/badge/platforms-iOS%7CAndroid-lightgrey.svg)](https://github.com/jpush/cordova-plugin-jsms)
+[![weibo](https://img.shields.io/badge/weibo-JPush-blue.svg)](http://weibo.com/jpush?refer_flag=1001030101_&is_all=1)
+
 [English doc](/doc/README_en.md).
 
 极光官方支持的 Cordova 短信验证码插件，支持 Android、iOS 平台。
@@ -95,6 +100,11 @@
     }, function (errorCode) {
       // Error callback.
     }, '159xxxxxxxx', '51234')
+
+## Todo
+
+- [x] Android 端开发
+- [ ] iOS 端开发
 
 ## 更多
 - QQ 群: 413602425
