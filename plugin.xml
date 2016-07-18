@@ -12,7 +12,7 @@
 
     <preference name="APP_KEY" />
 
-    <js-module src="www/JSmsPlugin.js" name="JSmsPlugin">
+    <js-module src="www/JSMSPlugin.js" name="JSMSPlugin">
         <clobbers target="jsms"/>
     </js-module>
 
@@ -22,8 +22,8 @@
 
     <platform name="android">
       <config-file target="res/xml/config.xml" parent="/*">
-        <feature name="JSmsPlugin">
-          <param name="android-package" value="cn.jiguang.jsms.JSmsPlugin" />
+        <feature name="JSMSPlugin">
+          <param name="android-package" value="cn.jiguang.jsms.JSMSPlugin" />
         </feature>
       </config-file>
 
@@ -41,7 +41,7 @@
       </config-file>
 
       <source-file src="src/android/jpush-sdk-sms-v1.0.0.jar" target-dir="libs"/>
-      <source-file src="src/android/JSmsPlugin.java" target-dir="src/cn/jiguang/jsms"/>
+      <source-file src="src/android/JSMSPlugin.java" target-dir="src/cn/jiguang/jsms"/>
 
     </platform>
 
