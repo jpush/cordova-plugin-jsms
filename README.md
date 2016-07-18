@@ -96,6 +96,11 @@
       // Error callback.
     }, '159xxxxxxxx', '51234')
 
+## Todo
+
+- [x] Android 端开发
+- [ ] iOS 端开发
+
 ## 更多
 - QQ 群: 413602425
 - [官网文档](http://docs.jiguang.cn/guideline/JSMS_guide/)
