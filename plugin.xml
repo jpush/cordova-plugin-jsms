@@ -63,10 +63,10 @@
         <header-file src="src/ios/Plugins/AppDelegate+JSMS.h"/>
         <source-file src="src/ios/Plugins/AppDelegate+JSMS.m"/>
 
-        <resource-file src="src/ios/PushConfig.plist" />
+        <resource-file src="src/ios/JSMSConfig.plist" />
 
-        <config-file target="*PushConfig.plist" parent="APP_KEY">
-            <string>$API_KEY</string>
+        <config-file target="*JSMSConfig.plist" parent="APP_KEY">
+            <string>$APP_KEY</string>
         </config-file>
     </platform>
 
