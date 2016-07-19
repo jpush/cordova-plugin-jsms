@@ -45,4 +45,30 @@
 
     </platform>
 
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="JSMSPlugin">
+                <param name="ios-package" value="JSMSPlugin"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/JsmsSDK/include/JSMSConstant.h" />
+        <header-file src="src/ios/JsmsSDK/include/JSMSSDK.h" />
+
+        <source-file src="src/ios/JsmsSDK/libsms-lib.a" framework="true" />
+
+        <header-file src="src/ios/Plugins/JSMSPlugin.h"/>
+        <source-file src="src/ios/Plugins/JSMSPlugin.m"/>
+        <header-file src="src/ios/Plugins/AppDelegate+JSMS.h"/>
+        <source-file src="src/ios/Plugins/AppDelegate+JSMS.m"/>
+
+        <resource-file src="src/ios/PushConfig.plist" />
+
+        <config-file target="*PushConfig.plist" parent="APP_KEY">
+            <string>$API_KEY</string>
+        </config-file>
+    </platform>
+
+
 </plugin>
