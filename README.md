@@ -1,7 +1,7 @@
 # cordova-plugin-jsms
 
 [![QQ Group](https://img.shields.io/badge/QQ%20Group-413602425-red.svg)]()
-[![release](https://img.shields.io/badge/release-1.0.0-blue.svg)](https://github.com/jpush/cordova-plugin-jsms/releases)
+[![release](https://img.shields.io/badge/release-1.1.0-blue.svg)](https://github.com/jpush/cordova-plugin-jsms/releases)
 [![platforms](https://img.shields.io/badge/platforms-iOS%7CAndroid-lightgrey.svg)](https://github.com/jpush/cordova-plugin-jsms)
 [![weibo](https://img.shields.io/badge/weibo-JPush-blue.svg)](http://weibo.com/jpush?refer_flag=1001030101_&is_all=1)
 
@@ -11,7 +11,7 @@
 
 > 目前不提供免费使用，有意可联系官方[商务客服](https://www.jiguang.cn/sms)。
 
-## 安装
+## Install
 - 在线
 
         cordova plugin add cordova-plugin-jsms --variable APP_KEY=Your_App_KEY
@@ -102,11 +102,16 @@
     }, '159xxxxxxxx', '51234')
 
 ## Todo
-
 - [x] Android 端开发
 - [x] iOS 端开发
 
-## 更多
+## Support
 - QQ 群: 413602425
 - [官网文档](http://docs.jiguang.cn/guideline/JSMS_guide/)
 - [极光社区](http://community.jiguang.cn/)
+
+## Contribute
+Please contribute! [Look at the issues](https://github.com/jpush/cordova-plugin-jsms/issues).
+
+## License
+MIT © [JiGuang](/LICENSE)
