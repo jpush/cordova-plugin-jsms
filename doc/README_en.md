@@ -4,7 +4,7 @@ This is the official plugin for [JSMS](https://www.jiguang.cn/sms) in Apache Cor
 
 > Currently does not support free trial. If interested, please contact the [customer service business](https://www.jiguang.cn/sms).
 
-## Installation
+## Install
 - Online
 
         cordova plugin add cordova-plugin-jsms --variable APP_KEY=Your_App_KEY
@@ -86,6 +86,12 @@ This is the official plugin for [JSMS](https://www.jiguang.cn/sms) in Apache Cor
       // Error callback.
     }, '159xxxxxxxx', '51234')
 
-## More
+## Support
 - [Official Document](http://docs.jiguang.cn/guideline/JSMS_guide/).
 - [Community Forum](http://community.jiguang.cn/).
+
+## Contribute
+Please contribute! [Look at the issues](https://github.com/jpush/cordova-plugin-jsms/issues).
+
+## License
+MIT © [JiGuang](/LICENSE)
