@@ -1,5 +1,6 @@
 package cn.jiguang.jsms;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.apache.cordova.CallbackContext;
@@ -88,6 +89,33 @@ public class JSMSPlugin extends CordovaPlugin {
         }
     }
 
+    void getVoiceCode(JSONArray data, final CallbackContext callback) {
+        try {
+            String phoneNum = data.getString(0);
+
+            if (TextUtils.isEmpty(phoneNum)) {
+                callback.error("Phone number is empty");
+                return;
+            }
+
+            SMSSDK.getInstance().getVoiceCodeAsyn(phoneNum, new SmscodeListener() {
+                @Override
+                public void getCodeSuccess(String uuid) {
+                    callback.success(uuid);
+                }
+
+                @Override
+                public void getCodeFail(int errCode, String errMsg) {
+                    Log.i(TAG, errCode + ": " + errMsg);
+                    callback.error(errCode);
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+            callback.error(e.getMessage());
+        }
+    }
+
     void checkSmsCode(JSONArray data, final CallbackContext callback) {
         try {
             String phoneNum = data.getString(0);
@@ -109,6 +137,22 @@ public class JSMSPlugin extends CordovaPlugin {
             e.printStackTrace();
             callback.error("Arguments error.");
         }
+    }
+
+    void setIntervalTime(JSONArray data, CallbackContext callback) {
+        try {
+            long intervalTime = data.getLong(0);
+            SMSSDK.getInstance().setIntervalTime(intervalTime);
+            callback.success();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            callback.error(e.getMessage());
+        }
+    }
+
+    void getIntervalTime(JSONArray data, CallbackContext callback) {
+        long internalTime = SMSSDK.getInstance().getIntervalTime();
+        callback.success(internalTime + "");
     }
 
 }
