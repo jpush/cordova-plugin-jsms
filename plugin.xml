@@ -40,7 +40,7 @@
         <meta-data android:name="JPUSH_APPKEY" android:value="$APP_KEY"/>
       </config-file>
 
-      <source-file src="src/android/jpush-sdk-sms-v1.0.0.jar" target-dir="libs"/>
+      <source-file src="src/android/jsms_android-1.1.0.jar" target-dir="libs"/>
       <source-file src="src/android/JSMSPlugin.java" target-dir="src/cn/jiguang/jsms"/>
 
     </platform>

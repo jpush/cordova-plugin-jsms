@@ -18,6 +18,11 @@ JSMSPlugin.prototype.getSmsCode = function (successCallback, errorCallback, phon
   exec(successCallback, errorCallback, 'JSMSPlugin', 'getSmsCode', [phoneNum, tempId])
 }
 
+// 获取语音验证码。
+JSMSPlugin.prototype.getVoiceCode = function (successCallback, errorCallback, phoneNum) {
+  exec(successCallback, errorCallback, 'JSMSPlugin', 'getVoiceCode', [phoneNum])
+}
+
 // 检查短信验证码是否正确。
 // successCallback：成功回调。
 // errorCallback：失败回调，以参数形式返回错误码。
@@ -25,6 +30,16 @@ JSMSPlugin.prototype.getSmsCode = function (successCallback, errorCallback, phon
 // code：字符串，表示用户输入的验证码。
 JSMSPlugin.prototype.checkSmsCode = function (successCallback, errorCallback, phoneNum, code) {
   exec(successCallback, errorCallback, 'JSMSPlugin', 'checkSmsCode', [phoneNum, code])
+}
+
+// 设置前后两次获取验证码的时间间隔（单位毫秒），默认 30 秒。
+JSMSPlugin.prototype.setIntervalTime = function (successCallback, errorCallback, intervalTime) {
+  exec(successCallback, errorCallback, 'JSMSPlugin', 'setIntervalTime', [intervalTime])
+}
+
+// 获取当前设置的时间间隔（单位毫秒）。
+JSMSPlugin.prototype.getIntervalTime = function (successCallback, errorCallback) {
+  exec(successCallback, errorCallback, 'JSMSPlugin', 'getIntervalTime', []);
 }
 
 if (!window.plugins) {
