@@ -2,43 +2,29 @@
 //  JSMSConstant.h
 //  JSms-test
 //
-//  Created by GKC on 16/3/28.
+//  Created by jpush on 16/3/28.
 //  Copyright © 2016年 HXHG. All rights reserved.
 //
 
-#define JSMS_VERSION_NUMBER 1.1.0
+#define JSMS_VERSION_NUMBER 1.2.0
 
 #ifndef JSMSConstant_h
 #define JSMSConstant_h
 
 
-/*!
- * @abstract 异步回调 block
- *
- * @discussion 大多数异步 API 都会以过个 block 回调。
- *
- * - 如果调用出错，则 error 不为空，可根据 error.code 来获取错误码。该错误码 JMessage 相关文档里有详细的定义。
- * - 如果返回正常，则 error 为空。从 resultObject 去获取相应的返回。每个 API 的定义上都会有进一步的定义。
- *
- */
-typedef void (^JSMSCompletionHandler)(id resultObject, NSError *error);
-
-
 typedef NS_ENUM(int, JSMSAuthCodeRequestError) {
     //获取验证码uuid错误，验证码验证失败
     JSMSAuthCodeRequestGetUuidError = 2993,
-    //两次请求不超过一分钟
+    //参数为空
+    JSMSAuthCodeRequestParameterError = 2994,
+    //两次请求不超过最小时间间隔
     JSMSAuthCodeRequestFrequentError = 2996,
-    //请首先获取验证码
-    JSMSAuthCodeRequestNOSmsUuidError = 2997,
-    //网络错误
-    JSMSAuthCodeRequestConnectionError = 2998,
+    //号码改变，请首先获取验证码
+    JSMSAuthCodePhoneNumberChangedError = 2997,
     //其他错误
     JSMSAuthCodeRequestOtherError = 2999,
-    //请求超时
-    JSMSAuthCodeRequestTimeOut = 3001,
     //手机号不合法
-    JSMSAuthCodeRequestInvalidatedPhoneNumber = 3002,
+    JSMSAuthCodeRequestInvalidMobile = 4204,
     //body为空
     JSMSAuthCodeRequestEmptyBody = 4001,
     //无效的appKey
@@ -77,8 +63,6 @@ typedef NS_ENUM(int, JSMSAuthCodeRequestError) {
     JSMSAuthCodeRequestSeverInternalError = 5000,
     
 };
-
-static NSString *const KEY_APP_KEY = @"appkey";
 
 
 #endif /* JSMSConstant_h */
