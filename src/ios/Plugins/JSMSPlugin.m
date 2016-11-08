@@ -50,6 +50,19 @@ static NSString *const KEY_ERRORDESCRIP = @"errorDscription";
     }];
 }
 
+-(void)getVoiceCode:(CDVInvokedUrlCommand*)command{
+    NSString *phoneNumber = [command argumentAtIndex:0];
+    WEAK_SELF(weakSelf);
+    [JSMSSDK getVoiceVerificationCodeWithPhoneNumber:phoneNumber completionHandler:^(id  _Nullable resultObject, NSError * _Nullable error) {
+        [weakSelf handleResultWithValue:resultObject command:command error:error log:@"get voice code"];
+    }];
+}
+
+-(void)setIntervalTime:(CDVInvokedUrlCommand*)command{
+    NSTimeInterval timeInterval = ((NSNumber*)[command argumentAtIndex:0]).doubleValue;
+    [JSMSSDK setMinimumTimeInterval:timeInterval];
+}
+
 -(void)checkSmsCode:(CDVInvokedUrlCommand*)command{
     NSString *phoneNumber = [command argumentAtIndex:0];
     NSString *code        = [command argumentAtIndex:1];
