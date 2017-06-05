@@ -14,17 +14,23 @@
 ## Install
 - 在线
 
-        cordova plugin add cordova-plugin-jsms --variable APP_KEY=Your_App_KEY
+  ```
+  cordova plugin add cordova-plugin-jsms --variable APP_KEY=Your_App_KEY
+  ```
 
   或
 
-      cordova plugin add https://github.com/jpush/cordova-plugin-jsms.git --variable APP_KEY=Your_App_Key
+  ```
+  cordova plugin add https://github.com/jpush/cordova-plugin-jsms.git --variable APP_KEY=Your_App_Key
+  ```
 
 - 本地
 
-        cordova plugin add <Plugin path> --variable APP_KEY=Your_App_Key
+  ```
+  cordova plugin add <Plugin path> --variable APP_KEY=Your_App_Key
+  ```
 
-    > [这里](http://docs.jiguang.cn/guideline/statistical_report/)了解如何获得 AppKey。
+  > [这里](http://docs.jiguang.cn/guideline/statistical_report/)了解如何获得 AppKey。
 
 ## API
 ### init
@@ -167,7 +173,7 @@
 ## Support
 - QQ 群: 413602425
 - [官网文档](http://docs.jiguang.cn/guideline/JSMS_guide/)
-- [极光社区](http://community.jiguang.cn/)
+<!-- - [极光社区](http://community.jiguang.cn/) -->
 
 ## Contribute
 Please contribute! [Look at the issues](https://github.com/jpush/cordova-plugin-jsms/issues).

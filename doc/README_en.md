@@ -7,17 +7,23 @@ This is the official plugin for [JSMS](https://www.jiguang.cn/sms) in Apache Cor
 ## Install
 - Online
 
-        cordova plugin add cordova-plugin-jsms --variable APP_KEY=Your_App_KEY
+  ```
+  cordova plugin add cordova-plugin-jsms --variable APP_KEY=Your_App_KEY
+  ```
 
   or
 
-      cordova plugin add https://github.com/jpush/cordova-plugin-jsms.git --variable APP_KEY=Your_App_Key
+  ```
+  cordova plugin add https://github.com/jpush/cordova-plugin-jsms.git --variable APP_KEY=Your_App_Key
+  ```
 
 - Local
 
-        cordova plugin add <Plugin path> --variable APP_KEY=Your_App_Key
+  ```
+  cordova plugin add <Plugin path> --variable APP_KEY=Your_App_Key
+  ```
 
-    > [Click here](http://docs.jiguang.cn/guideline/statistical_report/) to learn how to get AppKey.
+  > [Click here](http://docs.jiguang.cn/guideline/statistical_report/) to learn how to get AppKey.
 
 ## API
 ### init
@@ -88,7 +94,7 @@ This is the official plugin for [JSMS](https://www.jiguang.cn/sms) in Apache Cor
 
 ## Support
 - [Official Document](http://docs.jiguang.cn/guideline/JSMS_guide/).
-- [Community Forum](http://community.jiguang.cn/).
+<!-- - [Community Forum](http://community.jiguang.cn/). -->
 
 ## Contribute
 Please contribute! [Look at the issues](https://github.com/jpush/cordova-plugin-jsms/issues).
