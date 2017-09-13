@@ -80,8 +80,9 @@
 
 #### 代码示例
 
-    window.jsms.getSmsCode(function () {
+    window.jsms.getSmsCode(function (uuid) {
       // success callback.
+      console.log(uuid)
     }, function (errorCode) {
       // error callback.
     }, '159xxxxxxxx', '1')
@@ -173,7 +174,7 @@
 ## Support
 - QQ 群: 413602425
 - [官网文档](http://docs.jiguang.cn/guideline/JSMS_guide/)
-<!-- - [极光社区](http://community.jiguang.cn/) -->
+- [极光社区](http://community.jiguang.cn/)
 
 ## Contribute
 Please contribute! [Look at the issues](https://github.com/jpush/cordova-plugin-jsms/issues).
