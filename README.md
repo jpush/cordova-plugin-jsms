@@ -1,6 +1,6 @@
 # cordova-plugin-jsms
 
-[![release](https://img.shields.io/badge/release-1.1.3-blue.svg)](https://github.com/jpush/cordova-plugin-jsms/releases)
+[![release](https://img.shields.io/badge/release-1.1.4-blue.svg)](https://github.com/jpush/cordova-plugin-jsms/releases)
 [![platforms](https://img.shields.io/badge/platforms-iOS%7CAndroid-lightgrey.svg)](https://github.com/jpush/cordova-plugin-jsms)
 [![weibo](https://img.shields.io/badge/weibo-JPush-blue.svg)](http://weibo.com/jpush?refer_flag=1001030101_&is_all=1)
 [![QQ Group](https://img.shields.io/badge/QQ%20Group-413602425-red.svg)]()
@@ -14,13 +14,13 @@
 ## Install
 - 在线
 
-  ```
+  ```shell
   cordova plugin add cordova-plugin-jsms --variable APP_KEY=Your_App_KEY
   ```
 
   或
 
-  ```
+  ```shell
   cordova plugin add https://github.com/jpush/cordova-plugin-jsms.git --variable APP_KEY=Your_App_Key
   ```
 
@@ -33,37 +33,37 @@
   > [这里](http://docs.jiguang.cn/guideline/statistical_report/)了解如何获得 AppKey。
 
 ## API
-### init
+
+### init()
+
 初始化 JSMS 功能，主要是检测一些配置信息，如果配置错误将初始化失败，打印错误日志，调用其他接口前必须先初始化。
-
-#### 接口定义
-
-    window.jsms.init()
 
 #### 代码示例
 
-    window.jsms.init()
+```js
+window.jsms.init()
+```
 
-### setDebugMode
+### setDebugMode(successCallback, errorCallback, enabled)
+
 是否开启 JSMS Debug 模式。
 
-#### 接口定义
-
-    window.jsms.setDebugMode(successCallback, errorCallback, enabled)
-
 #### 参数说明
+
 - successCallback: 成功回调。
 - errorCallback: 失败回调，以参数形式返回错误信息。
 - enabled：true / false。
 
 #### 代码示例
 
-    window.jsms.setDebugMode(function () {
-      // success callback.
-    }, function (errorMsg) {
-      // error callback.
-      console.log(errorMsg)
-    }, true)
+```js
+window.jsms.setDebugMode(function () {
+  // success callback.
+}, function (errorMsg) {
+  // error callback.
+  console.log(errorMsg)
+}, true)
+```
 
 ### getSmsCode
 请求短信验证码。
@@ -166,10 +166,6 @@
     }, function (errorCode) {
         // error callback
     })
-
-## Todo
-- [x] Android 端开发
-- [x] iOS 端开发
 
 ## Support
 - QQ 群: 413602425
