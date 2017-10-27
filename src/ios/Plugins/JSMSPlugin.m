@@ -41,6 +41,10 @@ static NSString *const KEY_ERRORDESCRIP = @"errorDscription";
 
 #endif
 
+-(void)setup:(CDVInvokedUrlCommand*)command {
+    [self registerAppkey];
+}
+
 -(void)getSmsCode:(CDVInvokedUrlCommand*)command{
     NSString *phoneNumber = [command argumentAtIndex:0];
     NSString *templateId  = [command argumentAtIndex:1];
@@ -73,7 +77,7 @@ static NSString *const KEY_ERRORDESCRIP = @"errorDscription";
 }
 
 #pragma mark- 内部方法
-+(void)registerAppkey{
+- (void)registerAppkey{
 
     NSString *path = [[NSBundle mainBundle] pathForResource:JSMSConfigFileName ofType:@"plist"];
 

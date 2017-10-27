@@ -12,7 +12,7 @@
 
 }
 
-+(void)registerAppkey;
+-(void)setup:(CDVInvokedUrlCommand*)command;
 -(void)getSmsCode:(CDVInvokedUrlCommand*)command;
 -(void)getVoiceCode:(CDVInvokedUrlCommand*)command;
 -(void)setIntervalTime:(CDVInvokedUrlCommand*)command;

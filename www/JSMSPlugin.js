@@ -1,8 +1,20 @@
 var exec = require('cordova/exec')
 
 var JSMSPlugin = function () {}
+
+JSMSPlugin.prototype.isPlatformIOS = function () {
+  return (device.platform === 'iPhone' ||
+    device.platform === 'iPad' ||
+    device.platform === 'iPod touch' ||
+    device.platform === 'iOS')
+}
+
 JSMSPlugin.prototype.init = function () {
-  exec(null, null, 'JSMSPlugin', 'init', [])
+  if (this.isPlatformIOS) {
+    exec(null, null, 'JSMSPlugin', 'setup', [])
+  } else {
+    exec(null, null, 'JSMSPlugin', 'init', [])  
+  } 
 }
 
 JSMSPlugin.prototype.setDebugMode = function (successCallback, errorCallback, enabled) {
