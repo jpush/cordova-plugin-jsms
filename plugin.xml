@@ -58,8 +58,6 @@
 
         <header-file src="src/ios/Plugins/JSMSPlugin.h"/>
         <source-file src="src/ios/Plugins/JSMSPlugin.m"/>
-        <header-file src="src/ios/Plugins/AppDelegate+JSMS.h"/>
-        <source-file src="src/ios/Plugins/AppDelegate+JSMS.m"/>
 
         <resource-file src="src/ios/JSMSConfig.plist" />
 
