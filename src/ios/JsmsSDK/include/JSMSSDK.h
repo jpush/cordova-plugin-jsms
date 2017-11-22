@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JSMSConstant.h"
 
 /*!
  * @abstract 异步回调 block
@@ -44,8 +45,21 @@ typedef void (^JSMSCompletionHandler)(id _Nullable resultObject,  NSError *_Null
  *
  *  @param number     手机号码
  *  @param handler    服务器返回状态，成功时 error 为空 resultObject 为 @"success"
+ *  @discussion       默认中文播报。设置其它播报语言请调用getVoiceVerificationCodeWithPhoneNumber:languageOptions:completionHandler:方法
  */
 + (void)getVoiceVerificationCodeWithPhoneNumber:(NSString * _Nonnull)number
+                              completionHandler:(JSMSCompletionHandler _Nonnull)handler;
+
+
+/**
+ *  获取语音验证码 （v1.4.0 新增接口）
+ *
+ *  @param number     手机号码
+ *  @param number     播报语言。参数无效时，默认中文播报
+ *  @param handler    服务器返回状态，成功时 error 为空 resultObject 为 @"success"
+ */
++ (void)getVoiceVerificationCodeWithPhoneNumber:(NSString * _Nonnull)number
+                                languageOptions:(JSMSLanguageOptions)options
                               completionHandler:(JSMSCompletionHandler _Nonnull)handler;
 
 /**
@@ -65,5 +79,9 @@ typedef void (^JSMSCompletionHandler)(id _Nullable resultObject,  NSError *_Null
  *  @param seconds  时间间隔
  */
 + (void)setMinimumTimeInterval:(NSTimeInterval)seconds;
+
+
+
+
 
 @end
