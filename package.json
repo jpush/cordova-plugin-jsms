@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-jsms",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "JSMS for Cordova plugin.",
   "cordova": {
     "id": "cordova-plugin-jsms",

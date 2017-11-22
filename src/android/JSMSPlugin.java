@@ -1,4 +1,4 @@
-package cn.jiguang.jsms;
+package cn.jiguang.cordova.sms;
 
 import android.text.TextUtils;
 import android.util.Log;
