@@ -2,9 +2,9 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
   id="cordova-plugin-jsms"
-  version="1.1.5">
+  version="1.1.6">
 
-    <name>JSMS Cordova Plugin</name>
+    <name>JSMS</name>
     <description>JSMS for Cordova plugin</description>
     <author>JiGuang</author>
     <keywords>JSMS,SMS,jsms,sms</keywords>
@@ -43,7 +43,7 @@
       </config-file>
 
       <source-file src="src/android/jsms_android-1.2.0.jar" target-dir="libs"/>
-      <source-file src="src/android/JSMSPlugin.java" target-dir="src/cn/jiguang/jsms"/>
+      <source-file src="src/android/JSMSPlugin.java" target-dir="src/cn/jiguang/cordova/sms"/>
     </platform>
 
     <platform name="ios">
