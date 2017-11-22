@@ -21,7 +21,6 @@ import cn.jpush.sms.listener.SmscodeListener;
 
 public class JSMSPlugin extends CordovaPlugin {
     private static final String TAG = "JSMSPlugin";
-    private ExecutorService threadPool = Executors.newFixedThreadPool(1);
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -29,22 +28,17 @@ public class JSMSPlugin extends CordovaPlugin {
     }
 
     @Override
-    public boolean execute(final String action, final JSONArray args,
+    public boolean execute(final String action, final JSONArray data,
                            final CallbackContext callbackContext) throws JSONException {
-        threadPool.execute(new Runnable() {
+        cordova.getThreadPool().execute(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Method method = JSMSPlugin.class.getDeclaredMethod(action, JSONArray.class,
-                            CallbackContext.class);
-                    method.invoke(JSMSPlugin.this, args, callbackContext);
-                } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
-                    callbackContext.error("No such method.");
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
+                    Method method = JSMSPlugin.class.getDeclaredMethod(action,
+                            JSONArray.class, CallbackContext.class);
+                    method.invoke(JSMSPlugin.this, data, callbackContext);
+                } catch (Exception e) {
+                    Log.e(TAG, e.toString());
                 }
             }
         });

@@ -6,7 +6,7 @@
 //  Copyright © 2016年 HXHG. All rights reserved.
 //
 
-#define JSMS_VERSION_NUMBER 1.2.0
+#define JSMS_VERSION_NUMBER 1.4.0
 
 #ifndef JSMSConstant_h
 #define JSMSConstant_h
@@ -62,6 +62,12 @@ typedef NS_ENUM(int, JSMSAuthCodeRequestError) {
     //服务器错误
     JSMSAuthCodeRequestSeverInternalError = 5000,
     
+};
+
+
+typedef NS_OPTIONS(NSUInteger, JSMSLanguageOptions) {
+    JSMSLanguage_zh_Hans          =  1 << 0,          //中文
+    JSMSLanguage_en               =  1 << 1      //英文
 };
 
 

@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
   id="cordova-plugin-jsms"
-  version="1.1.4">
+  version="1.1.5">
 
     <name>JSMS Cordova Plugin</name>
     <description>JSMS for Cordova plugin</description>
@@ -20,14 +20,16 @@
         <engine name="cordova" version=">=5.0" />
     </engines>
 
+    <dependency id="cordova-plugin-device" />
+
     <platform name="android">
       <config-file target="res/xml/config.xml" parent="/*">
         <feature name="JSMSPlugin">
-          <param name="android-package" value="cn.jiguang.jsms.JSMSPlugin" />
+          <param name="android-package" value="cn.jiguang.cordova.sms.JSMSPlugin" />
         </feature>
       </config-file>
 
-      <config-file name="AndroidManifest.xml" parent="/manifest">
+      <config-file target="AndroidManifest.xml" parent="/manifest">
         <!-- Required permissions. -->
         <uses-permission android:name="android.permission.INTERNET"/>
         <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -36,11 +38,11 @@
         <uses-permission android:name="android.permission.READ_SMS"/>
       </config-file>
 
-      <config-file name="AndroidManifest.xml" parent="/manifest/application">
+      <config-file target="AndroidManifest.xml" parent="/manifest/application">
         <meta-data android:name="JPUSH_APPKEY" android:value="$APP_KEY"/>
       </config-file>
 
-      <source-file src="src/android/jsms_android-1.1.0.jar" target-dir="libs"/>
+      <source-file src="src/android/jsms_android-1.2.0.jar" target-dir="libs"/>
       <source-file src="src/android/JSMSPlugin.java" target-dir="src/cn/jiguang/jsms"/>
     </platform>
 

@@ -2,19 +2,12 @@ var exec = require('cordova/exec')
 
 var JSMSPlugin = function () {}
 
-JSMSPlugin.prototype.isPlatformIOS = function () {
-  return (device.platform === 'iPhone' ||
-    device.platform === 'iPad' ||
-    device.platform === 'iPod touch' ||
-    device.platform === 'iOS')
-}
-
 JSMSPlugin.prototype.init = function () {
-  if (this.isPlatformIOS) {
+  if (device.platform === 'iOS') {
     exec(null, null, 'JSMSPlugin', 'setup', [])
-  } else {
-    exec(null, null, 'JSMSPlugin', 'init', [])  
-  } 
+  } else if (device.platform === 'Android') {
+    exec(null, null, 'JSMSPlugin', 'init', [])
+  }
 }
 
 JSMSPlugin.prototype.setDebugMode = function (successCallback, errorCallback, enabled) {
@@ -51,7 +44,7 @@ JSMSPlugin.prototype.setIntervalTime = function (successCallback, errorCallback,
 
 // 获取当前设置的时间间隔（单位毫秒）。
 JSMSPlugin.prototype.getIntervalTime = function (successCallback, errorCallback) {
-  exec(successCallback, errorCallback, 'JSMSPlugin', 'getIntervalTime', []);
+  exec(successCallback, errorCallback, 'JSMSPlugin', 'getIntervalTime', [])
 }
 
 if (!window.plugins) {
