@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>JSms PhoneGap Demo</title>
+    <title>JSMS PhoneGap Demo</title>
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
     <meta name="msapplication-tap-highlight" content="no"/>
     <meta name="viewport" content="user-scalable=no, initial-scale=1,
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript">
-        var time = 60
+        var time = 30   // 默认倒计时 30 秒。
         var t
         var phoneNum
 
@@ -21,29 +21,34 @@
 
         var getSmsCode = function () {
             phoneNum = document.getElementById('phoneNum').value
-            window.jsms.getSmsCode(function (uuid) {
+
+            window.jsms.getSmsCode(uuid => {    // uuid 为本次操作的唯一标识。
                 console.log(uuid)
                 countDown()
-            }, function (errorCode) {
+
+            }, errorCode => {
                 console.log(errorCode)
+
             }, phoneNum, '1')
         }
 
         function checkSmsCode() {
             var code = document.getElementById('smsCode').value
-            window.jsms.checkSmsCode(function (successMsg) {
+
+            window.jsms.checkSmsCode(successMsg => {
                 alert(successMsg)
                 clearTimeout(t)
                 document.getElementById('time').value = time
-            }, function (errorMsg) {
-                console.log(errorMsg)
+
+            }, error => {
+                alert(error.description)
+
             }, phoneNum, code)
         }
 
         function countDown() {
             if (time > 0) {
                 time--
-                console.log(time)
                 document.getElementById('time').value = time
                 t = setTimeout("countDown()", 1000)
             }
@@ -57,7 +62,7 @@
 <label>
     <br>
     <input id="phoneNum" type="text" placeholder="手机号">
-    <input id="time" value=60><br><br>
+    <input id="time" value=30><br><br>
     <button onclick="getSmsCode()">获取验证码</button><br>
 </label>
 <br>
