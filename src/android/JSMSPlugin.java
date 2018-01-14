@@ -9,6 +9,7 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.reflect.Method;
 
@@ -17,7 +18,11 @@ import cn.jpush.sms.listener.SmscheckListener;
 import cn.jpush.sms.listener.SmscodeListener;
 
 public class JSMSPlugin extends CordovaPlugin {
-    private static final String TAG = "JSMSPlugin";
+
+    private static final String TAG = JSMSPlugin.class.getSimpleName();
+
+    private final int ERR_CODE_PARAMETER = 1;   // 参数错误。
+    private final String ERR_DESC_PARAMETER = "Parameters error";
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -47,103 +52,132 @@ public class JSMSPlugin extends CordovaPlugin {
     }
 
     void setDebugMode(JSONArray data, CallbackContext callback) {
+        boolean isDebug;    // 默认不开启
+
         try {
-            boolean isDebug = data.getBoolean(0);
-            SMSSDK.getInstance().setDebugMode(isDebug);
-            callback.success();
+            isDebug = data.getBoolean(0);
         } catch (JSONException e) {
             e.printStackTrace();
-            callback.error("Arguments error.");
+            handleResult(ERR_CODE_PARAMETER, ERR_DESC_PARAMETER, callback);
+            return;
         }
+
+        SMSSDK.getInstance().setDebugMode(isDebug);
+        callback.success();
     }
 
     void getSmsCode(JSONArray data, final CallbackContext callback) {
+        String phoneNum;
+        String tempId;
+
         try {
-            String phoneNum = data.getString(0);
-            String tempId = data.getString(1);
+            phoneNum = data.getString(0);
+            tempId = data.getString(1);
 
-            SMSSDK.getInstance().getSmsCodeAsyn(phoneNum, tempId, new SmscodeListener() {
-                @Override
-                public void getCodeSuccess(String uuid) {
-                    callback.success(uuid);
-                }
-
-                @Override
-                public void getCodeFail(int errorCode, String desc) {
-                    callback.error(errorCode);
-                    Log.i(TAG, "Error: " + errorCode + " - " + desc);
-                }
-            });
         } catch (JSONException e) {
             e.printStackTrace();
-            callback.error("Arguments error.");
+            handleResult(ERR_CODE_PARAMETER, ERR_DESC_PARAMETER, callback);
+            return;
         }
+
+        SMSSDK.getInstance().getSmsCode(phoneNum, tempId, new SmscodeListener() {
+            @Override
+            public void getCodeSuccess(String uuid) {
+                callback.success(uuid);
+            }
+
+            @Override
+            public void getCodeFail(int errorCode, String desc) {
+                handleResult(errorCode, desc, callback);
+            }
+        });
     }
 
     void getVoiceCode(JSONArray data, final CallbackContext callback) {
+        String phoneNum;
+        int language;
+
         try {
-            String phoneNum = data.getString(0);
-
-            if (TextUtils.isEmpty(phoneNum)) {
-                callback.error("Phone number is empty");
-                return;
-            }
-
-            SMSSDK.getInstance().getVoiceCodeAsyn(phoneNum, new SmscodeListener() {
-                @Override
-                public void getCodeSuccess(String uuid) {
-                    callback.success(uuid);
-                }
-
-                @Override
-                public void getCodeFail(int errCode, String errMsg) {
-                    Log.i(TAG, errCode + ": " + errMsg);
-                    callback.error(errCode);
-                }
-            });
+            phoneNum = data.getString(0);
+            language = data.getInt(1);
         } catch (JSONException e) {
             e.printStackTrace();
-            callback.error(e.getMessage());
+            handleResult(ERR_CODE_PARAMETER, ERR_DESC_PARAMETER, callback);
+            return;
         }
+
+        SMSSDK.getInstance().getVoiceCode(phoneNum, language, new SmscodeListener() {
+            @Override
+            public void getCodeSuccess(String uuid) {
+                callback.success(uuid); // uuid: 本次操作的唯一标识。
+            }
+
+            @Override
+            public void getCodeFail(int errCode, String desc) {
+                handleResult(errCode, desc, callback);
+            }
+        });
     }
 
     void checkSmsCode(JSONArray data, final CallbackContext callback) {
+        String phoneNum;
+        String code;
+
         try {
-            String phoneNum = data.getString(0);
-            String code = data.getString(1);
-
-            SMSSDK.getInstance().checkSmsCodeAsyn(phoneNum, code, new SmscheckListener() {
-                @Override
-                public void checkCodeSuccess(String code) {
-                    callback.success(code); // code：验证码信息。
-                }
-
-                @Override
-                public void checkCodeFail(int errorCode, String desc) {
-                    callback.error(errorCode);
-                    Log.i(TAG, "Error: " + errorCode + " - " + desc);
-                }
-            });
+            phoneNum = data.getString(0);
+            code = data.getString(1);
         } catch (JSONException e) {
             e.printStackTrace();
-            callback.error("Arguments error.");
+            handleResult(ERR_CODE_PARAMETER, ERR_DESC_PARAMETER, callback);
+            return;
         }
+
+        SMSSDK.getInstance().checkSmsCode(phoneNum, code, new SmscheckListener() {
+            @Override
+            public void checkCodeSuccess(String code) {
+                callback.success(code); // code：验证码信息。
+            }
+
+            @Override
+            public void checkCodeFail(int errorCode, String desc) {
+                callback.error(errorCode);
+                handleResult(errorCode, desc, callback);
+            }
+        });
     }
 
     void setIntervalTime(JSONArray data, CallbackContext callback) {
+        long intervalTime;
+
         try {
-            long intervalTime = data.getLong(0);
-            SMSSDK.getInstance().setIntervalTime(intervalTime);
-            callback.success();
+            intervalTime = data.getLong(0);  // JS 传过来的单位是秒。
         } catch (JSONException e) {
             e.printStackTrace();
-            callback.error(e.getMessage());
+            handleResult(ERR_CODE_PARAMETER, ERR_DESC_PARAMETER, callback);
+            return;
         }
+
+        SMSSDK.getInstance().setIntervalTime(intervalTime * 1000);  // 秒转毫秒。
+        callback.success();
     }
 
     void getIntervalTime(JSONArray data, CallbackContext callback) {
-        long internalTime = SMSSDK.getInstance().getIntervalTime();
-        callback.success(internalTime + "");
+        long internalTime = SMSSDK.getInstance().getIntervalTime() / 1000;  // 毫秒转秒。
+        callback.success((int) internalTime);
     }
 
+    private void handleResult(int status, String desc, CallbackContext callback) {
+        if (status == 0) {  // success
+            callback.success();
+        } else {    // error
+            JSONObject errorJson = new JSONObject();
+            try {
+                errorJson.put("code", status);
+                errorJson.put("description", desc);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            callback.error(errorJson);
+        }
+    }
 }
