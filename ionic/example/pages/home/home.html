@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      JSMS Ionic Example
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-input #phoneNum type="text" placeholder="手机号"></ion-input>
+        <ion-badge item-end>{{timer + 's'}}</ion-badge>
+      </ion-item>
+
+      <ion-item>
+        <ion-input #code type="number" placeholder="验证码"></ion-input>
+      </ion-item>
+
+      <button ion-button full (click)="getSmsCode(phoneNum.value)">获取短信验证码</button>
+      <button ion-button full (click)="getVoiceCode(phoneNum.value)">获取语音验证码</button>
+      <button ion-button full (click)="checkCode(phoneNum.value, code.value)">验证验证码</button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
