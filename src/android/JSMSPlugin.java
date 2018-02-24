@@ -1,6 +1,5 @@
 package cn.jiguang.cordova.sms;
 
-import android.text.TextUtils;
 import android.util.Log;
 
 import org.apache.cordova.CallbackContext;
